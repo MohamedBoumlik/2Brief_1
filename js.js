@@ -2,10 +2,11 @@ var data = [];
 get();
 
 function add(){
+  // var refreshedData = ocalStorage.getItem('StoredData');
 
   var Name =  document.getElementById('name').value;
   var Subject = document.getElementById('subject').value;
-
+    
   data.push({
     name: Name,
     subject: Subject
@@ -32,7 +33,25 @@ function get(){
               </tr>`;
 
     table.innerHTML = table.innerHTML+row ;
+    document.getElementById('name').value = '';
+    document.getElementById('subject').value = '';
 
   }
 
 }
+
+function spin(){
+
+  var localData = localStorage.getItem('StoredData');
+  var localData2 = JSON.parse(localData);
+  var max = localData2.length;
+  var win = Math.floor(Math.random() * max)
+  console.log(win);
+
+
+  // randomArray = localData2[Math.floor(Math.random()*localData2.length)];
+  // console.log(randomArray);
+
+}
+// Math.floor
+// Math.random
