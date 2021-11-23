@@ -39,37 +39,38 @@ function get(){
 
 }
 
+  var localData = localStorage.getItem('StoredData');
+  var localData2 = JSON.parse(localData);
+  let capturedData = [];
+  capturedData = localData2;
+
 function spin(){
 
   document.getElementById('winner').style.display= 'block';
 
-  var localData = localStorage.getItem('StoredData');
-  var localData2 = JSON.parse(localData);
-  var max = localData2.length;
-  // console.log(localData2);
+  var max = capturedData.length;
   var winnersArray = [];
-
-  // table.innerHTML="";
   
-  let rand = localData2[Math.floor(Math.random() * max)];
+  let rand = Math.floor(Math.random() * max);
 
   winnersArray.push({
-    name: rand.name,
-    subject: rand.subject
+    name: capturedData[rand].name,
+    subject: capturedData[rand].subject
   });
 
-  // let removed = localData2.splice(winnersArray,1);
-  // console.log(localData2);
+  let removed = capturedData.splice(rand,1);
+  console.warn(removed);
 
+  console.log(capturedData);
   
-  // console.log(winnersArray);
   var table = document.getElementById('tableWin');
   for(let i = 0; i <= winnersArray.length; i++){
     table.innerHTML += `<tr>
-                      <td>${winnersArray[i].name}</td>
-                      <td>${winnersArray[i].subject}</td>
-                    </tr>`;
+                          <td>${winnersArray[i].name}</td>
+                          <td>${winnersArray[i].subject}</td>
+                        </tr>`;
 
   }
+ 
 
 }
