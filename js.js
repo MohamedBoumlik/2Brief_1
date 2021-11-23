@@ -1,8 +1,7 @@
 var data = [];
 get();
-
+document.getElementById('winner').style.display= 'none';
 function add(){
-  // var refreshedData = ocalStorage.getItem('StoredData');
 
   var Name =  document.getElementById('name').value;
   var Subject = document.getElementById('subject').value;
@@ -42,16 +41,35 @@ function get(){
 
 function spin(){
 
+  document.getElementById('winner').style.display= 'block';
+
   var localData = localStorage.getItem('StoredData');
   var localData2 = JSON.parse(localData);
   var max = localData2.length;
-  var win = Math.floor(Math.random() * max)
-  console.log(win);
+  // console.log(localData2);
+  var winnersArray = [];
 
+  // table.innerHTML="";
+  
+  let rand = localData2[Math.floor(Math.random() * max)];
 
-  // randomArray = localData2[Math.floor(Math.random()*localData2.length)];
-  // console.log(randomArray);
+  winnersArray.push({
+    name: rand.name,
+    subject: rand.subject
+  });
+
+  // let removed = localData2.splice(winnersArray,1);
+  // console.log(localData2);
+
+  
+  // console.log(winnersArray);
+  var table = document.getElementById('tableWin');
+  for(let i = 0; i <= winnersArray.length; i++){
+    table.innerHTML += `<tr>
+                      <td>${winnersArray[i].name}</td>
+                      <td>${winnersArray[i].subject}</td>
+                    </tr>`;
+
+  }
 
 }
-// Math.floor
-// Math.random
