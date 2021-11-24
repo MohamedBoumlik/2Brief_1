@@ -1,6 +1,9 @@
+document.getElementById('winner').style.display= 'none';
 var data = [];
 get();
-document.getElementById('winner').style.display= 'none';
+
+// -------------------- add -------------------- 
+
 function add(){
 
   var Name =  document.getElementById('name').value;
@@ -8,7 +11,7 @@ function add(){
     
   data.push({
     name: Name,
-    subject: Subject
+    subject: Subject,
   });
 
   var dataJSON = JSON.stringify(data);
@@ -17,17 +20,20 @@ function add(){
   
 }
 
+// -------------------- get -------------------- 
+
 function get(){
 
   var DATA = localStorage.getItem('StoredData');
-  var DATA2 = JSON.parse(DATA);
-
+  if(DATA != null){
+    var DATA2 = JSON.parse(DATA);
+  }
   var table = document.getElementById('table');
   table.innerHTML="";
   for(var i = 0; i < DATA2.length; i++){
 
-    var row = `<tr>
-                  <td>${DATA2[i].name}</td>
+    var row = `<tr style="text-align: center; vertical-align: middle;">
+                  <td >${DATA2[i].name}</td>
                   <td>${DATA2[i].subject}</td>
               </tr>`;
 
@@ -39,10 +45,12 @@ function get(){
 
 }
 
-  var localData = localStorage.getItem('StoredData');
-  var localData2 = JSON.parse(localData);
-  let capturedData = [];
-  capturedData = localData2;
+// -------------------- Spinning -------------------- 
+
+var localData = localStorage.getItem('StoredData');
+var localData2 = JSON.parse(localData);
+let capturedData = [];
+capturedData = localData2;
 
 function spin(){
 
@@ -53,24 +61,26 @@ function spin(){
   
   let rand = Math.floor(Math.random() * max);
 
+  // Adding dates
+
   winnersArray.push({
     name: capturedData[rand].name,
-    subject: capturedData[rand].subject
+    subject: capturedData[rand].subject,
   });
 
   let removed = capturedData.splice(rand,1);
-  console.warn(removed);
 
-  console.log(capturedData);
-  
+  var date = new Date();
   var table = document.getElementById('tableWin');
   for(let i = 0; i <= winnersArray.length; i++){
-    table.innerHTML += `<tr>
+
+    let newDate = date.setDate( date.getDate()+1 );
+    table.innerHTML += `<tr style="text-align: center; vertical-align: middle;">
                           <td>${winnersArray[i].name}</td>
                           <td>${winnersArray[i].subject}</td>
+                          <td>${newDate.toLocaleDateString()}</td>
                         </tr>`;
 
   }
- 
 
 }

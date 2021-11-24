@@ -21,17 +21,20 @@
 
               <!-- <form action=""> -->
                   <div class="mb-3">
-                  <label for="name" class="form-label">Student Name</label>
-                  <input type="text" class="form-control" id="name" required>
+                    <label for="name" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" id="name" required>
                   </div>
+
                   <div class="mb-3">
-                  <label for="subject" class="form-label">Presentation's Subject</label>
-                  <input type="text" class="form-control" id="subject" required>
+                    <label for="subject" class="form-label">Presentation's Subject</label>
+                    <input type="text" class="form-control" id="subject" required>
                   </div>
-                  <!-- <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+                  <!-- <div class="mb-3">
+                    <label for="date" class="form-label">Presentation's Subject</label>
+                    <input type="date" class="form-control" id="date" required>
                   </div> -->
+
                   <div class="text-center">
                       <button class="btn btn-outline-dark" onclick="add()">Submit</button>
                   </div>
@@ -45,11 +48,10 @@
     <div class="container mt-5">
         <h3 class="text-center mb-4">Contestants</h3>
         <table class="table able-striped">
-            <thead>
-              <tr>
+            <thead >
+              <tr style="text-align: center; vertical-align: middle;">
                 <th scope="col">Name</th>
                 <th scope="col">Subject</th>
-                <th scope="col">Date</th>
               </tr>
             </thead>
             <tbody id="table">
@@ -69,7 +71,7 @@
       <h3 class="text-center mb-4">Selected contestants</h3>
       <table class="table able-striped">
           <thead>
-            <tr>
+            <tr style="text-align: center; vertical-align: middle;">
               <th scope="col">Name</th>
               <th scope="col">Subject</th>
               <th scope="col">Date</th>
