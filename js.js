@@ -51,6 +51,8 @@ var localData = localStorage.getItem('StoredData');
 var localData2 = JSON.parse(localData);
 let capturedData = [];
 capturedData = localData2;
+var date = new Date();
+
 
 function spin(){
 
@@ -58,7 +60,12 @@ function spin(){
 
   var max = capturedData.length;
   var winnersArray = [];
-  
+  date.setDate( date.getDate()+1 );
+
+  if(date.getDay()==6){
+    date.setDate( date.getDate()+2 );
+  }
+
   let rand = Math.floor(Math.random() * max);
 
   // Adding dates
@@ -66,21 +73,33 @@ function spin(){
   winnersArray.push({
     name: capturedData[rand].name,
     subject: capturedData[rand].subject,
+    date: date.toLocaleDateString()
   });
 
+  // console.log(winnersArray);
   let removed = capturedData.splice(rand,1);
 
-  var date = new Date();
+  console.log(winnersArray);
+
+  // var date = new Date();
   var table = document.getElementById('tableWin');
+  
   for(let i = 0; i <= winnersArray.length; i++){
 
-    let newDate = date.setDate( date.getDate()+1 );
     table.innerHTML += `<tr style="text-align: center; vertical-align: middle;">
                           <td>${winnersArray[i].name}</td>
                           <td>${winnersArray[i].subject}</td>
-                          <td>${newDate.toLocaleDateString()}</td>
+                          <td>${winnersArray[i].date}</td>
                         </tr>`;
-
+    
   }
+
+}
+
+function tt(fileExport,fileName){
+
+  var elt = document.getElementById('winnersTable');
+  var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+  return XLSX.writeFile(wb,fileName+"."+fileExport ||("filename."+(fileExport||'xlsx')));
 
 }
